@@ -646,19 +646,18 @@ const items = [
     "🥰"
 ];
 
-document.addEventListener("keydown",(e)=>{
+gameContainer.addEventListener("touchmove", (e) => {
 
-    if(e.key==="ArrowLeft"){
-        playerX-=25;
-    }
+    const rect = gameContainer.getBoundingClientRect();
 
-    if(e.key==="ArrowRight"){
-        playerX+=25;
-    }
+    let touchX = e.touches[0].clientX - rect.left;
 
-    playerX=Math.max(0,Math.min(650,playerX));
+    playerX = touchX - 25;
 
-    player.style.left=playerX+"px";
+    playerX = Math.max(0, Math.min(rect.width - 50, playerX));
+
+    player.style.left = playerX + "px";
+
 });
 
 function createItem(){
