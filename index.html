@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Babe ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+#startGameBtn{
+    display:block;
+    margin:40px auto;
+    padding:15px 30px;
+    border:none;
+    border-radius:50px;
+    font-size:1rem;
+    cursor:pointer;
+    background:white;
+    font-weight:600;
+}
+
+#gameSection{
+    padding:80px 10%;
+    text-align:center;
+}
+
+#gameContainer{
+    width:100%;
+    max-width:700px;
+    height:500px;
+    background:white;
+    margin:30px auto;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+#player{
+    position:absolute;
+    bottom:10px;
+    left:300px;
+    font-size:45px;
+    user-select:none;
+}
+
+.falling{
+    position:absolute;
+    font-size:35px;
+}
+
+#scoreBoard{
+    position:absolute;
+    top:15px;
+    left:15px;
+    font-weight:bold;
+}
+
+#gameResult{
+    margin-top:25px;
+    font-size:1.4rem;
+    font-weight:600;
+}
+
+body{
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);
+    color:#222;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    position:relative;
+}
+
+.hero h1{
+    font-size:4rem;
+    color:white;
+    font-weight:800;
+    text-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.hero h2{
+    margin-top:15px;
+    color:white;
+    font-weight:400;
+}
+
+.hero p{
+    margin-top:30px;
+    max-width:750px;
+    color:white;
+    font-size:1.15rem;
+    line-height:1.8;
+}
+
+.scroll{
+    margin-top:40px;
+    font-size:2rem;
+    color:white;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    50%{
+        transform:translateY(10px);
+    }
+}
+
+/* TIMELINE */
+
+.timeline-section{
+    padding:100px 10%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:70px;
+    font-size:1.1rem;
+}
+
+.timeline{
+    position:relative;
+    max-width:1000px;
+    margin:auto;
+}
+
+.timeline::after{
+    content:'';
+    position:absolute;
+    width:6px;
+    background:white;
+    top:0;
+    bottom:0;
+    left:50%;
+    margin-left:-3px;
+}
+
+.container{
+    padding:20px 40px;
+    position:relative;
+    width:50%;
+}
+
+.left{
+    left:0;
+}
+
+.right{
+    left:50%;
+}
+
+.container::after{
+    content:'❤️';
+    position:absolute;
+    width:40px;
+    height:40px;
+    top:25px;
+    right:-20px;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:white;
+    border-radius:50%;
+}
+
+.right::after{
+    left:-20px;
+}
+
+.content{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.content:hover{
+    transform:translateY(-8px);
+}
+
+.number{
+    color:#ff4d6d;
+    font-weight:700;
+    font-size:.9rem;
+    letter-spacing:1px;
+}
+
+.content h3{
+    margin:12px 0;
+}
+
+.content p{
+    line-height:1.7;
+}
+
+/* PERFORMANCE REVIEW */
+
+.review-section{
+    padding:100px 10%;
+}
+
+.review-title{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:50px;
+}
+
+.review-card{
+    max-width:850px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.review-item{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.review-item:last-child{
+    border-bottom:none;
+}
+
+.result-box{
+    margin-top:40px;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.result-box h3{
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+
+.footer{
+    padding:100px 20px;
+    text-align:center;
+}
+
+.footer h2{
+    font-size:3rem;
+    margin-bottom:25px;
+}
+
+.footer p{
+    max-width:700px;
+    margin:auto;
+    line-height:2;
+    font-size:1.1rem;
+}
+
+/* FLOATING HEARTS */
+
+.heart{
+    position:fixed;
+    bottom:-50px;
+    color:white;
+    opacity:.6;
+    animation:float linear forwards;
+    pointer-events:none;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0) rotate(0deg);
+    }
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+    }
+}
+
+/* ANIMATION */
+
+.hidden{
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 1s ease;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.5rem;
+}
+
+.section-title,
+.review-title,
+.footer h2{
+    font-size:2rem;
+}
+
+.timeline::after{
+    left:20px;
+}
+
+.container{
+    width:100%;
+    padding-left:60px;
+    padding-right:10px;
+}
+
+.right{
+    left:0;
+}
+
+.container::after,
+.right::after{
+    left:0;
+}
+
+.review-item{
+    flex-direction:column;
+    text-align:center;
+    gap:8px;
+}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>Happy Birthday, Situshna ❤️</h1>
+
+    <h2>Celebrating Another Successful Year Of Being The Centre Of Papoi's Universe</h2>
+
+    <p>
+        As part of your birthday celebrations, Papoi Industries Pvt. Ltd.
+        is proud to present a summary of services rendered over the past year.
+        All services were provided voluntarily, enthusiastically,
+        and occasionally under emotional blackmail.
+    </p>
+
+    <div class="scroll">↓</div>
+</section>
+
+<section class="timeline-section">
+
+    <h2 class="section-title">
+        📜 Papoi's Official Responsibilities
+    </h2>
+
+    <p class="subtitle">
+        A timeline of duties performed in service of Babe.
+    </p>
+
+    <div class="timeline">
+
+        <div class="container left hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 01</div>
+                <h3>👧 Taking Care of a 6-Year-Old Girl</h3>
+                <p>
+                    An extremely demanding position involving feeding,
+                    reassuring, listening and occasionally convincing Babe
+                    that everything will be okay.
+                </p>
+            </div>
+        </div>
+
+        <div class="container right hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 02</div>
+                <h3>🏍 Part-Time Rapido Driver</h3>
+                <p>
+                    Providing transportation services whenever Babe
+                    decides that walking is beneath her.
+                </p>
+            </div>
+        </div>
+
+        <div class="container left hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 03</div>
+                <h3>🛍 Part-Time Shopping Assistant</h3>
+                <p>
+                    Responsible for reviewing 147 options,
+                    offering thoughtful feedback,
+                    and then watching Babe buy the first thing she liked.
+                </p>
+            </div>
+        </div>
+
+        <div class="container right hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 04</div>
+                <h3>😌 Full-Time Stress-Me Button</h3>
+                <p>
+                    Available 24×7 for emotional support,
+                    overthinking management and emergency reassurance services.
+                </p>
+            </div>
+        </div>
+
+        <div class="container left hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 05</div>
+                <h3>✈ Full-Time Travel Buddy</h3>
+                <p>
+                    Chief Executive Officer of maps,
+                    tickets, snacks and carrying random items
+                    that somehow don't fit into Babe's bag.
+                </p>
+            </div>
+        </div>
+
+        <div class="container right hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 06</div>
+                <h3>🎬 Ultimate Selection & Management Board</h3>
+                <p>
+                    Tasked with preparing a list of movies and shows
+                    for Babe to reject before choosing something entirely different.
+                </p>
+            </div>
+        </div>
+
+        <div class="container left hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 07</div>
+                <h3>🍜 3 AM Maggi Partner</h3>
+                <p>
+                    A prestigious role involving noodles,
+                    gossip, life discussions and deeply philosophical
+                    conversations nobody remembers the next day.
+                </p>
+            </div>
+        </div>
+
+        <div class="container right hidden">
+            <div class="content">
+                <div class="number">RESPONSIBILITY 08</div>
+                <h3>❤️ Full-Time Papoi</h3>
+                <p>
+                    The most important responsibility.
+                    Permanent. Non-transferable.
+                    No weekends. No holidays.
+                    Resignation requests will not be accepted.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<button id="startGameBtn">🎮 Play Birthday Game</button>
+
+<section class="review-section">
+
+    <h2 class="review-title">
+        📋 Annual Performance Review
+    </h2>
+
+    <div class="review-card">
+
+        <div class="review-item">
+            <span>Rapido Services</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="review-item">
+            <span>Shopping Assistance</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="review-item">
+            <span>Travel Operations</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="review-item">
+            <span>Maggi Partnership</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="review-item">
+            <span>Movie Recommendations</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="review-item">
+            <span>Emotional Support</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="review-item">
+            <span>Being Papoi</span>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+
+        <div class="result-box">
+            <h3>PERFORMANCE REVIEW RESULT</h3>
+
+            <p>
+                <strong>Employee:</strong> Papoi<br>
+                <strong>Department:</strong> Babe Affairs<br>
+                <strong>Performance:</strong> Exceeds Expectations<br>
+                <strong>Salary:</strong> One smile from Babe<br>
+                <strong>Bonus:</strong> One extra hug<br>
+                <strong>Promotion:</strong> Denied<br>
+                <strong>Reason:</strong> Already holding the highest position available.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="gameSection">
+
+    <h2>🎮 Catch The Babe</h2>
+
+    <p>
+        Help Papoi catch all the things Babe needs.
+        (As usual.)
+    </p>
+
+    <div id="gameContainer">
+
+        <div id="player">🐼</div>
+
+        <div id="scoreBoard">
+            Score: <span id="score">0</span>
+        </div>
+
+    </div>
+
+    <div id="gameResult"></div>
+
+</section>
+
+<section class="footer">
+
+    <h2>Happy Birthday, Babe ❤️</h2>
+
+    <p>
+        Thank you for giving meaning to all these responsibilities.
+        <br><br>
+        Being your driver,
+        shopping assistant,
+        travel buddy,
+        movie consultant,
+        late-night Maggi partner,
+        emotional support department,
+        and most importantly,
+        your Papoi,
+        will always be my favourite job.
+        <br><br>
+        Love,
+        <br>
+        Papoi ❤️
+    </p>
+
+</section>
+
+<script>
+
+function createHeart(){
+    const heart=document.createElement("div");
+
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    heart.style.animationDuration=(Math.random()*5+5)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+}
+
+setInterval(createHeart,500);
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+},{threshold:0.15});
+
+document.querySelectorAll('.hidden').forEach(el=>{
+    observer.observe(el);
+});
+
+const gameContainer = document.getElementById("gameContainer");
+const player = document.getElementById("player");
+const scoreText = document.getElementById("score");
+const result = document.getElementById("gameResult");
+
+let score = 0;
+let playerX = 300;
+
+const items = [
+    "❤️",
+    "🍜",
+    "🎬",
+    "🛍️",
+    "🥰"
+];
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="ArrowLeft"){
+        playerX-=25;
+    }
+
+    if(e.key==="ArrowRight"){
+        playerX+=25;
+    }
+
+    playerX=Math.max(0,Math.min(650,playerX));
+
+    player.style.left=playerX+"px";
+});
+
+function createItem(){
+
+    if(score>=30) return;
+
+    const item=document.createElement("div");
+
+    item.classList.add("falling");
+    item.innerHTML=items[Math.floor(Math.random()*items.length)];
+
+    let x=Math.random()*650;
+    let y=0;
+
+    item.style.left=x+"px";
+
+    gameContainer.appendChild(item);
+
+    const fall=setInterval(()=>{
+
+        y+=4;
+
+        item.style.top=y+"px";
+
+        const playerRect=player.getBoundingClientRect();
+        const itemRect=item.getBoundingClientRect();
+
+        if(
+            itemRect.bottom>playerRect.top &&
+            itemRect.left<playerRect.right &&
+            itemRect.right>playerRect.left
+        ){
+
+            score++;
+
+            scoreText.innerText=score;
+
+            item.remove();
+
+            clearInterval(fall);
+
+            if(score>=30){
+
+                result.innerHTML=`
+                🎉 Congratulations Babe! ❤️<br><br>
+                Papoi has successfully completed another year of
+                catching everything you throw at him.
+                `;
+            }
+        }
+
+        if(y>500){
+
+            item.remove();
+            clearInterval(fall);
+        }
+
+    },20);
+}
+
+setInterval(createItem,800);
+
+</script>
+
+</body>
+</html>
+```
